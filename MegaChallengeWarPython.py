@@ -125,23 +125,38 @@ player2Cards = []
 from random import randint
 
 print "<html><body>"
+print "<head>"
+print "<style>"
+print """
+#column { 
+float:left; 
+}"""
+print "</style>"
+print "</head>"
 print "<h1>War</h1>"
 print "<h2>Here are the results of the deal:</h2>"
 print "<hr>"
 i = 52
+print "<br>"
 for x in range(0, 52):
-	if (len(player2Cards) == 26): break
+	if (len(player2Cards) == 26):
+		break
+		
 	else:
+		
 		randomCard =  randint(0, len(cards) - 1)
-		print "<p>Player 1: %s</p>" %cards[randomCard].name
+		print "<div id=\"column\">"
+		print "<strong> Player 1:</strong> %s" %cards[randomCard].name
 		player1Cards.append(cards[randomCard])
 		del cards[randomCard]
 		randomCard =  randint(0, len(cards) - 1)
-		print "<p>Player 2: %s</p>" %cards[randomCard].name
+		print " <strong> Player 2:</strong> %s  " %cards[randomCard].name
+		print "</div>"
+		print "<br><br>"
 		player2Cards.append(cards[randomCard])
 		del cards[randomCard]
-		if (len(player1Cards) == 26): 
-			break
+		
+
 
 print "<hr>"
 print "<h2>Let's Play!</h2>"
@@ -150,17 +165,17 @@ for x in range(1, 21):
 	
 	print "<p><h3>Round %s</h3></p>" %x
 	randomPlayer1Card = randint(0, len(player1Cards) - 1)
-	print "<p>Player 1 Card: %s<p>" %player1Cards[randomPlayer1Card].name
+	print "<strong>Player 1 Card: </strong>%s" %player1Cards[randomPlayer1Card].name
 	
 	randomPlayer2Card = randint(0, len(player2Cards) - 1)
-	print "<p>Player 2 Card: %s</p>" %player2Cards[randomPlayer2Card].name
+	print "<strong> Player 2 Card: </strong>%s" %player2Cards[randomPlayer2Card].name
 	
 	if (player1Cards[randomPlayer1Card].value == player2Cards[randomPlayer2Card].value):
-		print "<p>**********************WAR********************</p>"
+		print "<h3>**********************WAR********************</h3>"
 		randomPlayer1WarCard = randint(0, len(player1Cards) - 1)
 		randomPlayer2WarCard = randint(0, len(player2Cards) - 1)
-		print "<p>Player 1 War Card: %s</p>" %player1Cards[randomPlayer1WarCard].name
-		print "<p>Player 2 War Card: %s</p>" %player2Cards[randomPlayer2WarCard].name
+		print "<p><strong>Player 1 War Card: </strong>%s" %player1Cards[randomPlayer1WarCard].name
+		print "<strong>Player 2 War Card: </strong>%s</p>" %player2Cards[randomPlayer2WarCard].name
 
 		if (player1Cards[randomPlayer1WarCard].value == 
 			player2Cards[randomPlayer2WarCard].value):
@@ -193,6 +208,7 @@ for x in range(1, 21):
 			del player1Cards[randomPlayer1Card]
 			print "<p><strong>Player 2 wins!</strong></p>"
 
+
 	print "<hr>"
 	print "<p><strong>Player 1 card count: %s</p></strong>" %len(player1Cards)
 	print "<p><strong>Player 2 card count: %s</p></strong>" %len(player2Cards)
@@ -203,9 +219,9 @@ print "<h3>Player 1 final card count: %s cards</h3>" %len(player1Cards)
 print "<h3>Player 2 final card count: %s cards</h3>" %len(player2Cards)
 print "<hr>"
 print "<hr>"
-if(len(player1Cards) > len(player2Cards)): print "<p><h2>PLayer 1 Wins!</h2></p>"
+if(len(player1Cards) > len(player2Cards)): print "<p><h2>Player 1 Wins!</h2></p>"
 elif (len(player2Cards) > len(player1Cards)): print "<p><h2>Player 2 Wins!</h2></p>"
-elif (len(player2Cards) == len(player1Cards)): print "<p>THIS GAME IS A DRAW!</p>"
+elif (len(player2Cards) == len(player1Cards)): print "<p><h2>THIS GAME IS A DRAW!</h2></p>"
 else: print "<p>Something went wrong....</p>"
 print "<hr>"
 print "</html></body>"
